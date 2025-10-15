@@ -74,7 +74,6 @@ if not st.session_state.fully_cleared_on_start:
     clear_single_call_artifacts()
     st.session_state.fully_cleared_on_start = True
 
-# ---------------- Sidebar ---------------- #
 with st.sidebar:
     st.title("💬 Chat History / Cronologia Chat")
 
@@ -87,7 +86,7 @@ with st.sidebar:
         st.session_state.chatbot = get_chatbot()
         st.session_state.uploader_key += 1
 
-        st.success("✅ All old data cleared. Please upload a new audio file. / Tutti i dati precedenti sono stati eliminati. Carica un nuovo file audio.")
+        st.success("All old data cleared. Please upload a new audio file. / Tutti i dati precedenti sono stati eliminati. Carica un nuovo file audio.")
         st.rerun()
 
     st.markdown("---")
@@ -108,9 +107,9 @@ with st.sidebar:
 
     if uploaded is not None:
         if st.session_state.is_processing:
-            st.warning("⚙️ Processing in progress, please wait... / Elaborazione in corso, attendere prego...")
+            st.warning("Processing in progress, please wait... / Elaborazione in corso, attendere prego...")
         elif st.session_state.call_ready:
-            st.info("ℹ️ Start a new chat to upload another file. / Avvia una nuova chat per caricare un altro file.")
+            st.info("Start a new chat to upload another file. / Avvia una nuova chat per caricare un altro file.")
         else:
             st.session_state.is_processing = True
             st.session_state.call_ready = False
@@ -170,13 +169,13 @@ with st.sidebar:
                         "is_processing": False
                     })
 
-                    st.success(f"✅ Audio processed successfully — {len(embeddings_data)} chunks indexed. / Audio elaborato con successo — {len(embeddings_data)} segmenti indicizzati.")
+                    st.success(f"Audio processed successfully — {len(embeddings_data)} chunks indexed. / Audio elaborato con successo — {len(embeddings_data)} segmenti indicizzati.")
                     st.caption("📄 Transcript preview / Anteprima della trascrizione:")
                     st.code(transcript_text[:2000] + ("..." if len(transcript_text) > 2000 else ""))
 
                 except Exception as e:
                     st.session_state.is_processing = False
-                    st.error(f"❌ Processing failed: {e} / Elaborazione fallita: {e}")
+                    st.error(f"Processing failed: {e} / Elaborazione fallita: {e}")
 
 # ---------------- Main Chat Area ---------------- #
 st.title("🤖 Ascolto AI")
@@ -187,7 +186,7 @@ if st.session_state.is_processing:
     st.stop()
 
 if not st.session_state.call_ready:
-    st.warning("📂 Please upload and process a new audio file before asking questions. / Carica ed elabora un nuovo file audio prima di fare domande.")
+    st.warning("Please upload and process a new audio file before asking questions. / Carica ed elabora un nuovo file audio prima di fare domande.")
     st.stop()
 
 # Display messages
@@ -218,7 +217,7 @@ def detect_language(text: str) -> str:
 # ---- Handle new question ---- #
 if prompt := st.chat_input("💭 Ask a question about the uploaded call... / Fai una domanda sulla chiamata caricata..."):
     if st.session_state.is_processing or not st.session_state.call_ready:
-        st.warning("⚠️ Please wait until audio processing finishes before asking questions. / Attendere che l'elaborazione audio termini prima di porre domande.")
+        st.warning("Please wait until audio processing finishes before asking questions. / Attendere che l'elaborazione audio termini prima di porre domande.")
         st.stop()
 
     user_lang = detect_language(prompt)
