@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+env/
+venv/
+.venv/
+
+# Environment Variables
+.env
+
+# Streamlit
+.streamlit/
+
+# Chat Logs
+chat_logs/
+*.log
+extracted_text/
+service_account.json
+service_account/
+
+# PDF Data
+data/
+*.pdf
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Jupyter / IPython
+.ipynb_checkpoints/
+
+# PyInstaller
+*.spec
+dist/
+build/
